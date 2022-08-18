@@ -1,42 +1,34 @@
 
+import{ Circular, Node } from 'doublie';
 
-interface Word {
-  id: string;
-  ar: string;
-}
-
-const ListStyle = css`
-  & > button {
-    border: 1px solid #000;
-    display: block;
-    width: 100%;
-    &:not(:last-child) {
-      border-bottom: none;
-    }
-  }
-`;
-
-import { Circular } from 'doublie';
 
 
 const AutoComplete = () => {
+  const toast = useToast()
   const [show, {on, off}] = useBoolean()
   const [q, setQ] = React.useState("");
   const onChange = (e) => {
-    console.log(e.key);
+    
     
     
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
       return e.preventDefault()
     }
+
+    const Coee = isArabic.validate({ word: e.target.value })
+    if (!Coee) return toast({
+      title: t("ONLY_AR_LETTERS"),
+      status:"error",
+      isClosable: true
+    })
     setQ(e.target.value);
     search(e.target.value);
   };
   const inputRefContainer = React.useRef<HTMLElement>();
   const inputRef = React.useRef<HTMLElement>();
   const [searching, setSearching] = useState<boolean>();
-  const [items, setItems] = useState();
-  const [activeItem, setActiveItem] = useState<Word>();
+  const [items, setItems] = useState<Circular>();
+  const [activeItem, setActiveItem] = useState<Node>();
 
   const { t } = useTranslation("common");
   
@@ -161,7 +153,7 @@ const ListOfSuggestions = ({ items, activeItem }) => {
     <Box css={ListStyle}>
       {items.toArray().map((e, i) => {
           const active =  activeItem?.value?.id === e.id;
-          return <Button onClick={console.log} bg={active? "yellow": "ref"}>Item - {i}</Button>
+          return <Button key={e.id} tabIndex={0} onClick={console.log} bg={active? "yellow": "ref"}>Item - {i}</Button>
       })}
     </Box>
   );
