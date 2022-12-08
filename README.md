@@ -1,10 +1,1 @@
-
-<iframe
-    width="640"
-    height="480"
-    src="https://www.youtube.com/embed/hlNEOksOoJI"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
->
-</iframe>
+[![IMAGE_ALT](https://img.youtube.com/vi/hlNEOksOoJI/0.jpg)](https://www.youtube.com/embed/hlNEOksOoJI)
